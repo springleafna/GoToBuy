@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springleaf.mapper.UserOrderMapper">
+    <resultMap id="UserOrderResultMap" type="com.springleaf.pojo.UserOrderDTO">
+        <id property="userId" column="userId"/>
+        <result property="orderId" column="orderId"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="total" column="total"/>
+        <result property="state" column="state"/>
+        <result property="username" column="username"/>
+    </resultMap>
+
+    <select id="getUserOrders" resultMap="UserOrderResultMap">
+        SELECT
+            o.orderId,o.orderTime,o.total,state,u.username
+        FROM t_order o,t_user u
+        WHERE o.userId=u.userId
+    </select>
+</mapper>
